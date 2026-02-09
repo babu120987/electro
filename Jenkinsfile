@@ -32,17 +32,17 @@ pipeline {
             }
         }
 
-        stage('Run Container') {
-            steps {
-                sh '''
-                docker rm -f $CONTAINER_NAME || true
-                docker run -d \
-                  --name $CONTAINER_NAME \
-                  -p $PORT:9990 \
-                  $IMAGE_NAME:1
-                '''
-            }
-        }
+stage('Run Container') {
+    steps {
+        sh '''
+        docker rm -f electro_container || true
+        docker run -d \
+          --name electro_container \
+          -p 10000:9999 \
+          electro-web:1
+        '''
+    }
+}
     }
 
     post {
